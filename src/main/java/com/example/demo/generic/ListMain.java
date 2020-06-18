@@ -19,7 +19,8 @@ public class ListMain {
 
         List<String> list2 = new ArrayList<>();
         list2.add("string");
-        //list = list2;
+        // list = list2;
+        // a
         // b
     }
 }
