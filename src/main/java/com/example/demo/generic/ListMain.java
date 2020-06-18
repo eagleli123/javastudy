@@ -20,5 +20,6 @@ public class ListMain {
         List<String> list2 = new ArrayList<>();
         list2.add("string");
         //list = list2;
+        // b
     }
 }
