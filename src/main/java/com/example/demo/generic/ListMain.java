@@ -19,5 +19,6 @@ public class ListMain {
         System.out.println(list);
 
         List<String> list2 = new ArrayList<>();
+        //list = list2;
     }
 }
