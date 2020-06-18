@@ -21,5 +21,6 @@ public class ListMain {
         list2.add("string");
         // list = list2;
         // a
+        // b
     }
 }
