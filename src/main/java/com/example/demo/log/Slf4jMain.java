@@ -1,5 +1,7 @@
 package com.example.demo.log;
 
+import java.security.spec.ECField;
+import javax.sound.midi.Soundbank;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,5 +41,9 @@ public class Slf4jMain {
         Son son = new Son();
         father.fun();
         son.fun();
+        Exception exception = new RuntimeException("---");
+        System.out.println(exception);
+        log.error("hhh ", exception);
+        log.error("hhh {}", exception.getMessage(), exception);
     }
 }
