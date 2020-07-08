@@ -8,12 +8,14 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.junit.Test;
 
 /**
  * @author: lihui
  * @date: 2020-06-08
  */
 public class StreamStudy {
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
@@ -21,6 +23,14 @@ public class StreamStudy {
         Integer id;
         String name;
         Boolean sex;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class SumItem {
+        Double d1;
+        Double d2;
     }
 
     public static void main(String[] args) {
@@ -35,5 +45,29 @@ public class StreamStudy {
 
         Set<Integer> set = list.stream().map(StreamItem::getId).collect(Collectors.toSet());
         System.out.println(set);
+    }
+
+    @Test
+    public void testSum() {
+        List<Integer> list = Lists.newArrayList(1, 2, 3, 4);
+        System.out.println(list.stream().mapToInt(Integer::intValue).sum());
+        System.out.println(list.stream().mapToInt(x -> x).sum());
+        System.out.println(list.stream().reduce((x, y) -> x + y).get());
+        System.out.println(list.stream().reduce(1, (x, y) -> x + y));
+
+        List<SumItem> list2 =
+                Lists.newArrayList(new SumItem(1.0, null), new SumItem(3.0, null), new SumItem(4.0, null));
+        System.out.println(list2.stream().mapToDouble(x -> x.d1 == null || x.d2 == null ? 0 : x.d1 * x.d2).sum());
+        System.out.println(list2.stream().mapToDouble(x -> x.d1 == null ? 0 : x.d1).sum());
+        System.out.println(list2.stream().filter(x -> x.d2 != null).mapToDouble(x -> x.d2).sum());
+        System.out.println(
+                list2.stream()
+                        .filter(x -> x.d2 != null)
+                        .reduce(null, (x, y) -> new SumItem(null, x.d2 + y.d2)));
+        System.out.println(list2);
+        System.out.println(
+                list2.stream()
+                        .filter(x -> x.d1 != null)
+                        .reduce(null, (x, y) -> new SumItem(x.d1 + y.d1, null)));
     }
 }
