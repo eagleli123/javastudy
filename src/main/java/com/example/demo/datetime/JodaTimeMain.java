@@ -54,7 +54,6 @@ public class JodaTimeMain {
 
         DateTime dateTime = null;
         System.out.println(new DateTime(dateTime));
-
     }
 
     @Test
@@ -94,6 +93,15 @@ public class JodaTimeMain {
         System.out.println(begin + " " + end + " " + days);
 
         System.out.println(durationDays(begin.toDate(), end.toDate()));
+    }
+
+    @Test
+    public void minus() {
+        DateTime date1 = new DateTime(new DateTime("2020-02-01").toDate());
+        DateTime date2 = new DateTime(new DateTime("2020-02-01T05:06").toDate());
+        System.out.println(date1);
+        System.out.println(date2);
+        System.out.println(Days.daysBetween(date1, date2).getDays());
     }
 
     public static final long DAY_MILLIS = TimeUnit.DAYS.toMillis(1);
